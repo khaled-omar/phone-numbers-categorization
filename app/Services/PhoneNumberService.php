@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\PhoneNumberRepository;
 use App\Utilities\PhoneNumberParser;
 use App\Utilities\PhoneNumberValidator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use \Illuminate\Support\Collection;
 
 /**
@@ -58,15 +59,17 @@ class PhoneNumberService
      * Return phone numbers search results.
      *
      * @param array $filters
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function search(array $filters = [])
     {
         $phoneNumbersRecords = $this->repository->getAll();
         $this->mapPhoneNumbers($phoneNumbersRecords);
         $this->filterPhoneNumbers($phoneNumbersRecords, $filters);
+        $this->paginateResults($phoneNumbersRecords, $filters['page'] ?? 1, $filters['limit'] ?? 10);
+        $paginatedResults = $this->paginateResults($phoneNumbersRecords, $filters['page'] ?? 1, $filters['limit'] ?? 10);
 
-        return $phoneNumbersRecords;
+        return $paginatedResults;
     }
 
     /**
@@ -134,5 +137,21 @@ class PhoneNumberService
         }
 
         return $phoneNumbersRecords;
+    }
+
+    /**
+     * Return a paginated results.
+     *
+     * @param \Illuminate\Support\Collection $phoneNumbersRecords
+     * @param int $page
+     * @param int $limit
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    protected function paginateResults(Collection $phoneNumbersRecords, $page = 1, $limit = 10)
+    {
+        $pageIndex = $page - 1;
+        $paginatedPhoneNumbers = $phoneNumbersRecords->skip($pageIndex * $limit)->take($limit);
+
+        return new LengthAwarePaginator($paginatedPhoneNumbers, $phoneNumbersRecords->count(), $limit, $page);
     }
 }

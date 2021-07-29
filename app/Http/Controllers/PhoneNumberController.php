@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PhoneNumberResource;
+use App\Http\Resources\PhoneNumberResourceCollection;
 use App\Services\PhoneNumberService;
 use App\Http\Requests\PhoneNumberRequestValidation as RequestValidation;
 
