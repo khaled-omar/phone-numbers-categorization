@@ -66,7 +66,6 @@ class PhoneNumberService
         $phoneNumbersRecords = $this->repository->getAll();
         $this->mapPhoneNumbers($phoneNumbersRecords);
         $this->filterPhoneNumbers($phoneNumbersRecords, $filters);
-        $this->paginateResults($phoneNumbersRecords, $filters['page'] ?? 1, $filters['limit'] ?? 10);
         $paginatedResults = $this->paginateResults($phoneNumbersRecords, $filters['page'] ?? 1, $filters['limit'] ?? 10);
 
         return $paginatedResults;
