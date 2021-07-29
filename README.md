@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Exercise description
+## Exercise Description
 Create a single page application that uses the database provided (SQLite 3) to list and
 categorize country phone numbers.
 Phone numbers should be categorized by country, state (valid or not valid), country code and
