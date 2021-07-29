@@ -14,15 +14,16 @@ class PhoneNumberValidator
     /**
      * Return the validation state of phone number.
      *
-     * @param $phoneNumberRecord
+     * @param $phone
+     * @param $countryCode
      * @return string
      * @throws \Exception
      */
-    public static function isValid($phoneNumberRecord)
+    public function isValid($phone, $countryCode)
     {
-        $regex = self::getCountryRegex($phoneNumberRecord->country_code);
+        $regex = $this->getCountryRegex($countryCode);
 
-        return self::validate($phoneNumberRecord->phone, $regex);
+        return $this->validate($phone, $regex);
     }
 
     /**
@@ -32,7 +33,7 @@ class PhoneNumberValidator
      * @return mixed
      * @throws \Exception
      */
-    protected static function getCountryRegex($countryCode)
+    protected function getCountryRegex($countryCode)
     {
         $countriesCollection = collect(config('phone_numbers.countries'));
         $countryRecord = $countriesCollection->firstWhere('code', '=', $countryCode);
@@ -51,7 +52,7 @@ class PhoneNumberValidator
      * @param $regex
      * @return string
      */
-    protected static function validate($phone, $regex)
+    protected function validate($phone, $regex)
     {
         $regex = '/'.$regex.'/i';
 

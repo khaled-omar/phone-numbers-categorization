@@ -29,14 +29,29 @@ class PhoneNumberService
      */
     protected $countryService;
 
+    /**
+     * @var \App\Utilities\PhoneNumberValidator
+     */
+    protected $phoneNumberValidator;
+
+    /**
+     * PhoneNumberService constructor.
+     *
+     * @param \App\Repositories\PhoneNumberRepository $repository
+     * @param \App\Utilities\PhoneNumberParser $phoneNumberParser
+     * @param \App\Services\CountryService $countryService
+     * @param \App\Utilities\PhoneNumberValidator $phoneNumberValidator
+     */
     public function __construct(
         PhoneNumberRepository $repository,
         PhoneNumberParser $phoneNumberParser,
-        CountryService $countryService
+        CountryService $countryService,
+        PhoneNumberValidator $phoneNumberValidator
     ) {
         $this->repository = $repository;
         $this->phoneNumberParser = $phoneNumberParser;
         $this->countryService = $countryService;
+        $this->phoneNumberValidator = $phoneNumberValidator;
     }
 
     /**
@@ -98,7 +113,7 @@ class PhoneNumberService
      */
     protected function validatePhoneNumber($phoneNumberRecord)
     {
-        $phoneNumberRecord->state = PhoneNumberValidator::isValid($phoneNumberRecord);
+        $phoneNumberRecord->state = $this->phoneNumberValidator->isValid($phoneNumberRecord->phone, $phoneNumberRecord->country_code);
     }
 
     /**
