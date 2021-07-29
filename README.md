@@ -20,8 +20,9 @@ filter by country and state. Pagination is an extra.
 1. Clone the repo.
 2. Change the working directory to project directory using `cd phone-numbers-categorization`.
 3. Execute the following command `Composer install` to install dependencies.
-4. Copy `.env.example` to `.env` and change `DB_DATABASE` to sqlite database absolute path `database/database.sqlite`.
-5. Run php server using `php artisan serve`.
+4. Copy `database/sample.db` to `database/database.sqlite` using the following command `sudo cp database/sample.db database/database.sqlite`.
+5. Copy `.env.example` to `.env` and change `DB_DATABASE` to sqlite database absolute path `database/database.sqlite`.
+6. Run php server using `php artisan serve`.
 
 ## Integration Testing
 
