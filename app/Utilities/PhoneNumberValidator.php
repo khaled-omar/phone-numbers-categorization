@@ -12,7 +12,7 @@ use \Exception;
 class PhoneNumberValidator
 {
     /**
-     * Return the validation state of phone number.
+     * Return the validation state of phone number against a regex.
      *
      * @param $phone
      * @param $countryCode
