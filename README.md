@@ -23,6 +23,13 @@ filter by country and state. Pagination is an extra.
 4. Copy `database/sample.db` to `database/database.sqlite` using the following command `sudo cp database/sample.db database/database.sqlite`.
 5. Copy `.env.example` to `.env` and change `DB_DATABASE` to sqlite database absolute path `database/database.sqlite`.
 6. Run php server using `php artisan serve`.
+7. Run `npm install && npm run dev`.
+8. Navigate to `http://127.0.0.1:8000/` on the browser.
+
+## Important Note
+
+I already cache the mapped phone number records to save processing time for subsequent requests on retrieved customers from database.
+In case of maintaining the application and adding add/update/delete operations or even changing regex, we should flush the cache for key `mapped-phone-numbers`.
 
 ## Integration Testing
 
