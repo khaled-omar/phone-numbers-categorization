@@ -42,6 +42,7 @@ class PhoneNumberControllerTest extends TestCase
         ];
         $response = $this->json('GET', '/api/phone-numbers', $filters);
 
+        $response->dump();
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
