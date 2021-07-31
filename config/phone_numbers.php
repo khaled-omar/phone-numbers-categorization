@@ -3,12 +3,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Mailer
+    | Countries configuration
     |--------------------------------------------------------------------------
     |
-    | This option controls the default mailer that is used to send any email
-    | messages sent by your application. Alternative mailers may be setup
-    | and used as needed; however, this mailer will be used by default.
+    | This option controls the default countries, code and regext that is used on phone numbers
+    | validation by your application. Countries should be retrieved
+    | and used from a persistent storage; however, this is the current static list.
     |
     */
 
